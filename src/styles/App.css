@@ -1,0 +1,10 @@
+:root {
+  --black: #2c2c2c;
+  --white: #f4ebd9;
+  --border: #52504f;
+}
+
+.App {
+  text-align: center;
+  color: var(--white);
+}
