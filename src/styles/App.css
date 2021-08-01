@@ -8,3 +8,9 @@
   text-align: center;
   color: var(--white);
 }
+
+img {
+  width: 100vw;
+  max-width: 1347px;
+  height: auto;
+}
