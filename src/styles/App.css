@@ -9,8 +9,27 @@
   color: var(--white);
 }
 
-img {
+#gameboard {
   width: 100vw;
   max-width: 1347px;
   height: auto;
+}
+
+.hidden-pokemon {
+  padding: 15px;
+  margin-bottom: 15px;
+  width: 100px;
+  height: 100px;
+}
+
+.start {
+  display: block;
+  margin: auto;
+  background-color: transparent;
+  color: var(--white);
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid var(--white);
+  border-radius: 5px;
+  cursor: pointer;
 }
