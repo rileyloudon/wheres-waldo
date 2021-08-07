@@ -21,6 +21,7 @@ function App() {
     left: 0,
     opacity: 0,
   });
+
   const [displayInstructions, setDisplayInstructions] = useState(true);
   const [gameOver, setGameOver] = useState(false);
 
@@ -38,15 +39,19 @@ function App() {
     // Currently doesn't work if zoomed in with width > 1347px
     const mouseX =
       window.innerWidth > 1347
-        ? Math.round((e.nativeEvent.pageX - rect.left) / widthDifference)
-        : Math.round(e.nativeEvent.pageX / widthDifference);
+        ? Math.round((e.pageX - rect.left) / widthDifference)
+        : Math.round(e.pageX / widthDifference);
 
     // 19 = height of header
     const mouseY = Math.round((e.nativeEvent.pageY - 19) / heightDifference);
     console.log(mouseX, mouseY);
 
-    // setPokeballStyles({ top: mouseY, left: mouseX, opacity: 100 });
-    setPokeballStyles({ top: e.pageY - 35, left: e.pageX - 50, opacity: 100 });
+    const pokeballSize = document.querySelector('.pokeball');
+    setPokeballStyles({
+      top: e.pageY - pokeballSize.height / 2,
+      left: e.pageX - pokeballSize.width / 2,
+      opacity: 100,
+    });
   };
 
   useEffect(() => {
@@ -111,7 +116,7 @@ function App() {
           onClick={(e) => handleGameClick(e)}
           id='gameboard'
           src={gameboard}
-          alt=''
+          alt='Gameboard'
         />
       </div>
     );
