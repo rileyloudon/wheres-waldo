@@ -1,5 +1,5 @@
 const Header = () => {
-  return <header>Camo Kabutops</header>;
+  return <header>Pallet Town On Parade</header>;
 };
 
 export default Header;
