@@ -30,26 +30,23 @@ function App() {
 
   const handleGameClick = (e) => {
     const frame = document.getElementById('gameboard');
-    const rect = frame.getBoundingClientRect();
-    console.log(rect);
 
-    const widthDifference = rect.width / 1347;
-    const heightDifference = rect.height / 959;
+    const widthDifference = frame.width / 1347;
+    const heightDifference = frame.height / 959;
 
-    // Currently doesn't work if zoomed in with width > 1347px
-    const mouseX =
-      window.innerWidth > 1347
-        ? Math.round((e.pageX - rect.left) / widthDifference)
-        : Math.round(e.pageX / widthDifference);
+    const mouseX = Math.round((e.pageX - frame.offsetLeft) / widthDifference);
 
-    // 19 = height of header
-    const mouseY = Math.round((e.nativeEvent.pageY - 19) / heightDifference);
+    const mouseY = Math.round(
+      (e.nativeEvent.pageY - document.querySelector('header').offsetHeight) /
+        heightDifference
+    );
+
     console.log(mouseX, mouseY);
 
-    const pokeballSize = document.querySelector('.pokeball');
+    const pokeballImg = document.querySelector('.pokeball');
     setPokeballStyles({
-      top: e.pageY - pokeballSize.height / 2,
-      left: e.pageX - pokeballSize.width / 2,
+      top: e.pageY - pokeballImg.height / 2,
+      left: e.pageX - pokeballImg.width / 2,
       opacity: 100,
     });
   };
