@@ -9,6 +9,11 @@
   color: var(--white);
 }
 
+#title {
+  margin-top: 10px;
+  width: 60vw;
+}
+
 #gameboard {
   width: 100vw;
   max-width: 1347px;
