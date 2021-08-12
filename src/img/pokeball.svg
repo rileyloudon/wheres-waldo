@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 840 592" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <use xlink:href="#_Image1" x="178" y="44" width="483px" height="265px"/>
-    <g transform="matrix(1,0,0,1.07143,-3,-8.5)">
+<svg width="100%" height="100%" viewBox="0 0 525 525" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="_Image1_" serif:id="_Image1" transform="matrix(1,0,0,1,21,10)">
+        <use xlink:href="#_Image1" x="0" y="0" width="483px" height="265px"/>
+    </g>
+    <g transform="matrix(1,0,0,1.07143,-160,-42.5)">
         <rect x="183" y="287" width="145" height="14" style="fill:rgb(4,0,0);"/>
     </g>
-    <g transform="matrix(1,0,0,1.07143,332,-8.5)">
+    <g transform="matrix(1,0,0,1.07143,175,-42.5)">
         <rect x="183" y="287" width="145" height="14"/>
     </g>
-    <g transform="matrix(1.82759,0,0,1.81356,-367.69,-267.492)">
+    <g transform="matrix(1.82759,0,0,1.81356,-524.69,-301.492)">
         <path d="M431,287C447.006,287 460,300.219 460,316.5C460,332.781 447.006,346 431,346C414.994,346 402,332.781 402,316.5C402,300.219 414.994,287 431,287ZM431,298.965C440.514,298.965 448.238,306.822 448.238,316.5C448.238,326.178 440.514,334.035 431,334.035C421.486,334.035 413.762,326.178 413.762,316.5C413.762,306.822 421.486,298.965 431,298.965Z" style="fill:rgb(9,2,2);"/>
     </g>
-    <g transform="matrix(2.4125,0,0,2.24419,-686.838,-285.965)">
+    <g transform="matrix(2.4125,0,0,2.24419,-843.838,-319.965)">
         <path d="M459,221C481.077,221 499,240.268 499,264C499,287.732 481.077,307 459,307C436.923,307 419,287.732 419,264C419,240.268 436.923,221 459,221ZM459,231.268C475.805,231.268 489.448,245.935 489.448,264C489.448,282.065 475.805,296.732 459,296.732C442.195,296.732 428.552,282.065 428.552,264C428.552,245.935 442.195,231.268 459,231.268Z"/>
     </g>
-    <g transform="matrix(1.3342,0,0,1.00787,-399.034,-2.33071)">
+    <g transform="matrix(1.3342,0,0,1.00787,-556.034,-36.3307)">
         <path d="M613.5,42C719.192,42 805,155.814 805,296C805,436.186 719.192,550 613.5,550C507.808,550 422,436.186 422,296C422,155.814 507.808,42 613.5,42ZM613.5,63.187C710.376,63.187 789.027,167.507 789.027,296C789.027,424.493 710.376,528.813 613.5,528.813C516.624,528.813 437.973,424.493 437.973,296C437.973,167.507 516.624,63.187 613.5,63.187Z"/>
     </g>
     <defs>
