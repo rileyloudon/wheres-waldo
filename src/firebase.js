@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/auth';
 import 'firebase/firestore';
 
 var firebaseConfig = {
@@ -12,9 +13,38 @@ var firebaseConfig = {
 
 !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
-// export const initGame = (pokemon1, pokemon2) => {
-//   return firebase.firestore.collection('game');
-// };
+export const initGame = (pokemon) => {
+  const user = firebase.auth().currentUser;
+
+  return firebase.firestore().collection('game-sessions').doc(user.uid).set({
+    pokemon: pokemon,
+    startTime: firebase.firestore.Timestamp.now(),
+  });
+};
+
+export const endGame = () => {
+  const user = firebase.auth().currentUser;
+
+  return firebase.firestore().collection('game-sessions').doc(user.uid).set(
+    {
+      endTime: firebase.firestore.Timestamp.now(),
+    },
+    { merge: true }
+  );
+};
+
+export const getUserData = () => {
+  const user = firebase.auth().currentUser;
+
+  const docRef = firebase.firestore().collection('game-sessions').doc(user.uid);
+  return docRef.get().then((doc) => {
+    return doc.data();
+  });
+};
+
+export const anonSignIn = () => {
+  return firebase.auth().signInAnonymously();
+};
 
 export const checkClick = (
   x,
