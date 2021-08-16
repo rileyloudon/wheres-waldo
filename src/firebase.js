@@ -15,7 +15,6 @@ var firebaseConfig = {
 
 export const initGame = (pokemon) => {
   const user = firebase.auth().currentUser;
-
   return firebase.firestore().collection('game-sessions').doc(user.uid).set({
     pokemon: pokemon,
     startTime: firebase.firestore.Timestamp.now(),
@@ -24,13 +23,17 @@ export const initGame = (pokemon) => {
 
 export const endGame = () => {
   const user = firebase.auth().currentUser;
-
   return firebase.firestore().collection('game-sessions').doc(user.uid).set(
     {
       endTime: firebase.firestore.Timestamp.now(),
     },
     { merge: true }
   );
+};
+
+export const deleteGameSession = () => {
+  const user = firebase.auth().currentUser;
+  return firebase.firestore().collection('game-sessions').doc(user.uid).delete();
 };
 
 export const getUserData = () => {
