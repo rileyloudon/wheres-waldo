@@ -81,17 +81,12 @@ export const checkClick = (
     .catch((err) => console.log(err));
 };
 
-// export const addUserToLeaderboard = (name, pokemon1, pokemon2) => {
-//   return firebase
-//     .firestore()
-//     .collection('leaderboards')
-//     .doc(name)
-//     .set(
-//       {
-//         name: name,
-//         pokemon: ['kabutops', pokemon1, pokemon2],
-// time: game start time - game end time
-//       },
-//       { merge: true }
-//     );
-// };
+// Get Leaderboards
+
+export const addToLeaderboards = (name, pokemon, time) => {
+  return firebase.firestore().collection('leaderboards').doc(name).add({
+    name: name,
+    pokemon: pokemon,
+    time: time,
+  });
+};
