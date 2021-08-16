@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/header';
 import Game from './components/game';
-import Leaderboards from './components/leaderboard';
+import Leaderboards from './components/leaderboards';
 import './styles/App.css';
 
 // Ideas:
