@@ -4,13 +4,14 @@
   --border: #52504f;
 }
 
-.App {
+.Pallet-Town-On-Parade {
   text-align: center;
   color: var(--white);
 }
 
 #title {
   margin-top: 10px;
+  max-width: 800px;
   width: 60vw;
 }
 
@@ -23,8 +24,14 @@
 .hidden-pokemon {
   padding: 15px;
   margin-bottom: 15px;
-  width: 100px;
-  height: 100px;
+  width: 7vw;
+  max-width: 75px;
+  height: 7vw;
+  max-height: 75px;
+}
+
+.remaining .hidden-pokemon {
+  margin-bottom: 0;
 }
 
 .start {
@@ -42,5 +49,5 @@
 .pokeball {
   pointer-events: none;
   position: absolute;
-  width: 8vw;
+  width: 5vw;
 }
