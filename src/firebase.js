@@ -84,12 +84,15 @@ export const checkClick = (
     .catch((err) => console.log(err));
 };
 
-// Get Leaderboards
+// Load Leaderboards located in leaderboards.js -> allows for live reloading
 
 export const addToLeaderboards = (name, pokemon, time) => {
-  return firebase.firestore().collection('leaderboards').doc(name).add({
-    name: name,
-    pokemon: pokemon,
-    time: time,
-  });
+  return firebase
+    .firestore()
+    .collection('leaderboards')
+    .add({
+      name: name || 'Ash',
+      pokemon: pokemon,
+      time: time,
+    });
 };
