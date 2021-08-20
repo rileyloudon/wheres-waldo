@@ -13,6 +13,10 @@ var firebaseConfig = {
 
 !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
+export const currentUser = () => {
+  return firebase.auth().currentUser;
+};
+
 export const initGame = (pokemon) => {
   const user = firebase.auth().currentUser;
   return firebase.firestore().collection('game-sessions').doc(user.uid).set({
@@ -87,6 +91,8 @@ export const checkClick = (
 // Load Leaderboards located in leaderboards.js -> allows for live reloading
 
 export const addToLeaderboards = (name, pokemon, time) => {
+  const user = firebase.auth().currentUser;
+
   return firebase
     .firestore()
     .collection('leaderboards')
@@ -94,5 +100,6 @@ export const addToLeaderboards = (name, pokemon, time) => {
       name: name || 'Ash',
       pokemon: pokemon,
       time: time,
+      id: user.uid,
     });
 };
