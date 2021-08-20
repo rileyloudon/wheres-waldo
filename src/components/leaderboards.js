@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-// import { loadLeaderboards } from '../firebase';
+import { currentUser } from '../firebase';
 
 const Leaderboards = () => {
+  const [allLeaderboards, setAllLeaderboards] = useState([]);
   const [top10, setTop10] = useState([]);
+  const [currentUserBestRank, setCurrentUserBestRank] = useState();
+  const [currentUserBest, setCurrentUserBest] = useState();
+  const [player] = useState(currentUser());
 
   useEffect(() => {
     const unsubscribe = firebase
       .firestore()
       .collection('leaderboards')
       .orderBy('time', 'asc')
-      .limit(10)
       .onSnapshot((querySnapshot) => {
         const leaderboardData = [];
         querySnapshot.forEach((user) => {
           leaderboardData.push(user.data());
         });
-        setTop10(leaderboardData);
+        setAllLeaderboards(leaderboardData);
       });
 
     return () => {
@@ -25,9 +28,23 @@ const Leaderboards = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setTop10(allLeaderboards.slice(0, 10));
+    if (player) {
+      const userIndex = allLeaderboards.findIndex(
+        (person) => person.id === player.uid
+      );
+      setCurrentUserBest(allLeaderboards[userIndex]);
+      setCurrentUserBestRank(userIndex);
+    }
+  }, [allLeaderboards, player]);
+
   const displayUser = (user, i) => {
     return (
-      <tr key={user.name + user.time}>
+      <tr
+        key={user.name + user.time}
+        className={i > 10 || user === currentUserBest ? 'user-best' : null}
+      >
         <td className='rank'>{i + 1}. </td>
         <td className='name'>{user.name}</td>
         <td className='pokemon'>
@@ -39,8 +56,6 @@ const Leaderboards = () => {
       </tr>
     );
   };
-
-  // If user just played and is over rank 10, display their rank
 
   return (
     <div id='leaderboards'>
@@ -58,6 +73,18 @@ const Leaderboards = () => {
           {top10.map((user, i) => displayUser(user, i))}
         </tbody>
       </table>
+      {currentUserBestRank > 10 && (
+        <table>
+          <thead>
+            <tr>
+              <th colSpan='4'>Your Best Time</th>
+            </tr>
+          </thead>
+          <tbody className='leaderboard-entry'>
+            {displayUser(currentUserBest, currentUserBestRank, true)}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
