@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { anonSignIn, checkClick, initGame, endGame, getUserData } from '../firebase';
+import { useHistory } from 'react-router';
+import {
+  anonSignIn,
+  checkClick,
+  initGame,
+  endGame,
+  getUserData,
+  addToLeaderboards,
+  deleteGameSession,
+} from '../firebase';
 import gameboard from '../img/pallet-town-on-parade-gameboard.jpg';
 import pokeball from '../img/pokeball.svg';
 
 const Game = () => {
+  const history = useHistory();
+
   const [pokeballStyles, setPokeballStyles] = useState({
     top: 0,
     left: 0,
@@ -13,11 +24,15 @@ const Game = () => {
   const [displayInstructions, setDisplayInstructions] = useState(true);
   const [gameOver, setGameOver] = useState(false);
 
-  const [randomPokemon1, setRandomPokemon1] = useState(undefined);
-  const [randomPokemon2, setRandomPokemon2] = useState(undefined);
-  const [remainingPokemon, setRemainingPokemon] = useState(undefined);
+  const [randomPokemon1, setRandomPokemon1] = useState();
+  const [randomPokemon2, setRandomPokemon2] = useState();
+  const [remainingPokemon, setRemainingPokemon] = useState();
 
-  const [userTime, setUserTime] = useState('---');
+  const [userTime, setUserTime] = useState(0);
+  const [userPokemon, setUserPokemon] = useState([]);
+
+  const [askName, setAskName] = useState(false);
+  const [name, setName] = useState('');
 
   const startGame = () => {
     setDisplayInstructions(false);
@@ -67,11 +82,15 @@ const Game = () => {
         if (tempRemainingPokemon.length > 0)
           setRemainingPokemon(tempRemainingPokemon);
         else {
-          endGame();
-          getUserData().then((result) => {
-            setUserTime((result.endTime - result.startTime).toFixed(2));
-            console.log(result.endTime - result.startTime);
+          endGame().then(() => {
+            getUserData()
+              .then((result) => {
+                setUserTime(result.endTime - result.startTime);
+                setUserPokemon(result.pokemon);
+              })
+              .then(() => deleteGameSession());
           });
+
           setGameOver(true);
         }
       }
@@ -159,11 +178,46 @@ const Game = () => {
     return (
       <>
         <h2>Congratulations!</h2>
-        <p>You found everyone in {userTime} seconds!</p>
+        <p>You found everyone in {userTime.toFixed(2)} seconds!</p>
         <p>Would you like to be added to the leaderboard?</p>
-        <button>No</button>
-        <button>Yes</button>
-        {/* <Leaderboards/> */}
+        {!askName ? (
+          <>
+            <button className='noBtn' onClick={() => history.push('/leaderboards')}>
+              No
+            </button>
+            <button className='yesBtn' onClick={() => setAskName(true)}>
+              Yes
+            </button>
+          </>
+        ) : (
+          <>
+            <label className='nameInput'>
+              Whats your name?
+              <input
+                placeholder='Ash'
+                type='text'
+                value={name}
+                maxLength='12'
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+            <button
+              className='cancelBtn'
+              onClick={() => history.push('/leaderboards')}
+            >
+              Cancel
+            </button>
+            <button
+              className='addBtn'
+              onClick={() => {
+                history.push('/leaderboards');
+                addToLeaderboards(name, userPokemon, userTime);
+              }}
+            >
+              Add
+            </button>
+          </>
+        )}
       </>
     );
   }
