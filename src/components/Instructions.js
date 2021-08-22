@@ -1,24 +1,22 @@
 const Instructions = (props) => {
-  const { loadingPokemon, pokemon, startGame } = props;
+  const { loadingPokemon, remainingPokemon, startGame } = props;
 
   return (
     <>
       <p>Welcome to Pallet Town's annual parade! </p>
       <p>This year we have selected a few Pokemon for you to catch.</p>
       <p>Who to catch:</p>
-      <div>
-        {!loadingPokemon &&
-          pokemon.map((pokemonName) => {
-            return (
-              <img
-                key={pokemonName}
-                className='hidden-pokemon'
-                src={`../hidden-pokemon/${pokemonName}.svg`}
-                alt={pokemonName}
-              />
-            );
-          })}
-      </div>
+      {!loadingPokemon &&
+        remainingPokemon.map((pokemonName) => {
+          return (
+            <img
+              key={pokemonName}
+              className='hidden-pokemon'
+              src={`../hidden-pokemon/${pokemonName}.svg`}
+              alt={pokemonName}
+            />
+          );
+        })}
       <dl>
         <dt>How to play:</dt>
         <dd>Click on the map to throw a Pokeball</dd>
