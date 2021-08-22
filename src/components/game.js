@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
 import {
   anonSignIn,
   checkClick,
   initGame,
   endGame,
   getUserData,
-  addToLeaderboards,
   deleteGameSession,
 } from '../firebase';
-import gameboard from '../img/pallet-town-on-parade-gameboard.jpg';
-import pokeball from '../img/pokeball.svg';
+import Instructions from './Instructions';
+import Gameboard from './Gameboard';
+import GameOver from './GameOver';
 
 const Game = () => {
-  const history = useHistory();
-
   const [pokeballStyles, setPokeballStyles] = useState({
     top: 0,
     left: 0,
@@ -24,28 +21,24 @@ const Game = () => {
   const [displayInstructions, setDisplayInstructions] = useState(true);
   const [gameOver, setGameOver] = useState(false);
 
-  const [randomPokemon1, setRandomPokemon1] = useState();
-  const [randomPokemon2, setRandomPokemon2] = useState();
+  const [loadingPokemon, setLoadingPokemon] = useState(true);
   const [remainingPokemon, setRemainingPokemon] = useState();
 
   const [userTime, setUserTime] = useState(0);
   const [userPokemon, setUserPokemon] = useState([]);
 
-  const [askName, setAskName] = useState(false);
-  const [name, setName] = useState('');
-
   const startGame = () => {
     setDisplayInstructions(false);
-    setRemainingPokemon(['kabutops', randomPokemon1, randomPokemon2]);
 
     anonSignIn().then(() => {
-      initGame(['kabutops', randomPokemon1, randomPokemon2]);
+      initGame(remainingPokemon);
     });
   };
 
   const handleGameClick = (e) => {
     const frame = document.getElementById('gameboard');
 
+    // Gameboard/frame resolution is 1347x959
     const widthDifference = frame.width / 1347;
     const heightDifference = frame.height / 959;
 
@@ -57,8 +50,6 @@ const Game = () => {
         document.querySelector('.remaining').offsetHeight) /
         heightDifference
     );
-
-    console.log(mouseX, mouseY);
 
     const pokeballImg = document.querySelector('.pokeball');
     setPokeballStyles({
@@ -74,7 +65,6 @@ const Game = () => {
       pokeballImg.width,
       remainingPokemon
     ).then((result) => {
-      console.log('Clicked Pokemon: ' + JSON.stringify(result));
       if (typeof result === 'object') {
         const tempRemainingPokemon = [...remainingPokemon];
         const foundPokemonIndex = remainingPokemon.indexOf(result.name);
@@ -99,6 +89,7 @@ const Game = () => {
 
   useEffect(() => {
     let availablePokemon = [
+      'kabutops',
       'ditto',
       'pikachu',
       'magnemite',
@@ -110,116 +101,38 @@ const Game = () => {
     ];
 
     const randomNumber1 = Math.floor(Math.random() * availablePokemon.length);
-    setRandomPokemon1(availablePokemon[randomNumber1]);
-
+    const pokemon1 = availablePokemon[randomNumber1];
     availablePokemon.splice(randomNumber1, 1);
 
     const randomNumber2 = Math.floor(Math.random() * availablePokemon.length);
-    setRandomPokemon2(availablePokemon[randomNumber2]);
+    const pokemon2 = availablePokemon[randomNumber2];
+    availablePokemon.splice(randomNumber2, 1);
+
+    const randomNumber3 = Math.floor(Math.random() * availablePokemon.length);
+    const pokemon3 = availablePokemon[randomNumber3];
+
+    setRemainingPokemon([pokemon1, pokemon2, pokemon3]);
+    setLoadingPokemon(false);
   }, []);
 
   if (displayInstructions) {
     return (
-      <>
-        <p>How fast can you catch Kabutops and his friends?</p>
-        <p>Who to catch:</p>
-        <img
-          className='hidden-pokemon'
-          src={`../hidden-pokemon/kabutops.svg`}
-          alt='Kabutops'
-        />
-        <img
-          className='hidden-pokemon'
-          src={`../hidden-pokemon/${randomPokemon1}.svg`}
-          alt={randomPokemon1}
-        />
-        <img
-          className='hidden-pokemon'
-          src={`../hidden-pokemon/${randomPokemon2}.svg`}
-          alt={randomPokemon2}
-        />
-        <button className='start' onClick={startGame}>
-          Start Game
-        </button>
-      </>
+      <Instructions
+        loadingPokemon={loadingPokemon}
+        remainingPokemon={remainingPokemon}
+        startGame={startGame}
+      />
     );
   } else if (!gameOver) {
     return (
-      <>
-        <div className='remaining'>
-          {remainingPokemon.map((pokemon) => {
-            return (
-              <img
-                key={pokemon}
-                className='hidden-pokemon'
-                src={`../hidden-pokemon/${pokemon}.svg`}
-                alt={pokemon}
-              />
-            );
-          })}
-        </div>
-
-        <img
-          className='pokeball'
-          src={pokeball}
-          alt='Targeting Pokeball'
-          style={pokeballStyles}
-        />
-
-        <img
-          onClick={(e) => handleGameClick(e)}
-          id='gameboard'
-          src={gameboard}
-          alt='Gameboard'
-        />
-      </>
+      <Gameboard
+        remainingPokemon={remainingPokemon}
+        pokeballStyles={pokeballStyles}
+        handleGameClick={handleGameClick}
+      />
     );
   } else {
-    return (
-      <>
-        <h2>Congratulations!</h2>
-        <p>You found everyone in {userTime.toFixed(2)} seconds!</p>
-        <p>Would you like to be added to the leaderboard?</p>
-        {!askName ? (
-          <>
-            <button className='noBtn' onClick={() => history.push('/leaderboards')}>
-              No
-            </button>
-            <button className='yesBtn' onClick={() => setAskName(true)}>
-              Yes
-            </button>
-          </>
-        ) : (
-          <>
-            <label className='nameInput'>
-              Whats your name?
-              <input
-                placeholder='Ash'
-                type='text'
-                value={name}
-                maxLength='12'
-                onChange={(e) => setName(e.target.value)}
-              />
-            </label>
-            <button
-              className='cancelBtn'
-              onClick={() => history.push('/leaderboards')}
-            >
-              Cancel
-            </button>
-            <button
-              className='addBtn'
-              onClick={() => {
-                history.push('/leaderboards');
-                addToLeaderboards(name, userPokemon, userTime);
-              }}
-            >
-              Add
-            </button>
-          </>
-        )}
-      </>
-    );
+    return <GameOver userTime={userTime} userPokemon={userPokemon} />;
   }
 };
 
