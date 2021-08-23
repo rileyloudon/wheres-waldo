@@ -4,8 +4,7 @@ const Instructions = (props) => {
   return (
     <>
       <p>Welcome to Pallet Town's annual parade! </p>
-      <p>This year we have selected a few Pokemon for you to catch.</p>
-      <p>Who to catch:</p>
+      <p>This year we have selected the following Pokemon for you to catch:</p>
       {!loadingPokemon &&
         remainingPokemon.map((pokemonName) => {
           return (
@@ -19,9 +18,9 @@ const Instructions = (props) => {
         })}
       <dl>
         <dt>How to play:</dt>
-        <dd>Click on the map to throw a Pokeball</dd>
-        <dd>Aim for the center of each Pokemon</dd>
-        <dd>Catch them all as fast as you can to be added to the leaderboards</dd>
+        <dd>1. Click on the map to throw a Pokeball</dd>
+        <dd>2. Aim for the center of each Pokemon</dd>
+        <dd>3. Catch 'em all as fast as you can to be added to the leaderboards</dd>
         <dd>Have Fun!</dd>
       </dl>
       <button className='start' onClick={startGame}>
