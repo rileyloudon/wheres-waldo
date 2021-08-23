@@ -60,6 +60,9 @@ const Leaderboards = () => {
   return (
     <div id='leaderboards'>
       <h2>Leaderboards</h2>
+      {currentUserBestRank < 10 && currentUserBestRank !== -1 && (
+        <p className='user-best'>Your Best Time</p>
+      )}
       <table>
         <thead>
           <tr>
