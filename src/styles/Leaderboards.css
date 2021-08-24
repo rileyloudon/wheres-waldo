@@ -1,0 +1,37 @@
+#leaderboards {
+  width: 80vw;
+  max-width: 1000px;
+  margin: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+th,
+td {
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: #363535;
+}
+
+.user-best {
+  border: 1px solid var(--border);
+  color: #ffc1a7;
+}
+
+p.user-best {
+  width: fit-content;
+  margin: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.leaderboard-entry .name,
+.leaderboard-entry .pokemon {
+  text-transform: capitalize;
+}
