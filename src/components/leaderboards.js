@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { currentUser } from '../firebase';
+import { anonSignIn, currentUser } from '../firebase';
+import '../styles/Leaderboards.css';
 
 const Leaderboards = () => {
   const [allLeaderboards, setAllLeaderboards] = useState([]);
   const [top10, setTop10] = useState([]);
   const [currentUserBestRank, setCurrentUserBestRank] = useState();
   const [currentUserBest, setCurrentUserBest] = useState();
-  const [player] = useState(currentUser());
+  const [player, setPlayer] = useState(currentUser());
+
+  if (!player) anonSignIn().then(() => setPlayer(currentUser()));
 
   useEffect(() => {
     const unsubscribe = firebase
