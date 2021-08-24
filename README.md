@@ -2,7 +2,7 @@
 
 [Click Me to Play](https://rileyloudon.github.io/wheres-waldo/)
 
-A Pokemon themed game of Where's Waldo called Pallet Town on Parade.
+A Pokemon themed game of Where's Waldo called Pallet Town on Parade. \
 Three pokemon are randomly selected from a list of 9 to find each game.
 
 <div align='center'>
@@ -17,7 +17,7 @@ How to play:
 2. Aim for the center of each Pokemon
 3. Find all the Pokemon as fast as you can to be added to the leaderboards.
 
-Leaderboards are updated realtime and your best score is highlighted, even if you don't make the top 10.
+Leaderboards are updated realtime and your best time is highlighted, even if you don't make the top 10.
 
 <div align='center'>
   <img src=./public/img/leaderboards.png>
