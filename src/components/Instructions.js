@@ -11,7 +11,7 @@ const Instructions = (props) => {
             <img
               key={pokemonName}
               className='hidden-pokemon'
-              src={`../hidden-pokemon/${pokemonName}.svg`}
+              src={`../img/hidden-pokemon/${pokemonName}.svg`}
               alt={pokemonName}
             />
           );

@@ -12,7 +12,7 @@ const Gameboard = (props) => {
             <img
               key={pokemon}
               className='hidden-pokemon'
-              src={`../hidden-pokemon/${pokemon}.svg`}
+              src={`../img/hidden-pokemon/${pokemon}.svg`}
               alt={pokemon}
             />
           );
