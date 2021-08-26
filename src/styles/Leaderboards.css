@@ -35,3 +35,20 @@ p.user-best {
 .leaderboard-entry .pokemon {
   text-transform: capitalize;
 }
+
+@media (max-width: 780px) {
+  #leaderboards {
+    width: 95vw;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .user-best {
+    color: #b84a1c;
+  }
+
+  tr:nth-child(even) {
+    background-color: #c5c5c5;
+  }
+}
