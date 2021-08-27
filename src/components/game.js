@@ -38,14 +38,14 @@ const Game = () => {
   const handleGameClick = (e) => {
     const frame = document.getElementById('gameboard');
 
-    // Gameboard/frame resolution is 1347x959
+    // Gameboard/frame size is 1347x959
     const widthDifference = frame.width / 1347;
     const heightDifference = frame.height / 959;
 
     const mouseX = Math.round((e.pageX - frame.offsetLeft) / widthDifference);
 
     const mouseY = Math.round(
-      (e.nativeEvent.pageY -
+      (e.pageY -
         document.querySelector('header').offsetHeight -
         document.querySelector('.remaining').offsetHeight) /
         heightDifference
@@ -58,13 +58,33 @@ const Game = () => {
       opacity: 100,
     });
 
+    // Due to large size difference on mobile, pokeball edges use a larger value
+    // to help make sure pokeball is accurate
+    const pokeballLeft =
+      frame.width > 500
+        ? mouseX - pokeballImg.width / 2
+        : mouseX - pokeballImg.width;
+    const pokeballRight =
+      frame.width > 500
+        ? mouseX + pokeballImg.width / 2
+        : mouseX + pokeballImg.width;
+    const pokeballTop =
+      frame.height > 500
+        ? mouseY - pokeballImg.height / 2
+        : mouseY - pokeballImg.height;
+    const pokeballBottom =
+      frame.height > 500
+        ? mouseY + pokeballImg.height / 2
+        : mouseY + pokeballImg.height;
+
     checkClick(
-      mouseX,
-      mouseY,
-      pokeballImg.height,
-      pokeballImg.width,
+      pokeballLeft,
+      pokeballRight,
+      pokeballTop,
+      pokeballBottom,
       remainingPokemon
     ).then((result) => {
+      console.log(result);
       if (typeof result === 'object') {
         const tempRemainingPokemon = [...remainingPokemon];
         const foundPokemonIndex = remainingPokemon.indexOf(result.name);
