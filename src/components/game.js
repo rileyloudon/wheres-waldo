@@ -38,7 +38,7 @@ const Game = () => {
   const handleGameClick = (e) => {
     const frame = document.getElementById('gameboard');
 
-    // Gameboard/frame size is 1347x959
+    // Gameboard/frame max size is 1347x959
     const widthDifference = frame.width / 1347;
     const heightDifference = frame.height / 959;
 
