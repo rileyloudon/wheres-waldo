@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/wheres-waldo/static/css/main.fd00765d.chunk.css",
+    "main.js": "/wheres-waldo/static/js/main.6deb4476.chunk.js",
+    "main.js.map": "/wheres-waldo/static/js/main.6deb4476.chunk.js.map",
+    "runtime-main.js": "/wheres-waldo/static/js/runtime-main.68352134.js",
+    "runtime-main.js.map": "/wheres-waldo/static/js/runtime-main.68352134.js.map",
+    "static/js/2.679f3da1.chunk.js": "/wheres-waldo/static/js/2.679f3da1.chunk.js",
+    "static/js/2.679f3da1.chunk.js.map": "/wheres-waldo/static/js/2.679f3da1.chunk.js.map",
+    "index.html": "/wheres-waldo/index.html",
+    "static/css/main.fd00765d.chunk.css.map": "/wheres-waldo/static/css/main.fd00765d.chunk.css.map",
+    "static/js/2.679f3da1.chunk.js.LICENSE.txt": "/wheres-waldo/static/js/2.679f3da1.chunk.js.LICENSE.txt",
+    "static/media/pallet-town-on-parade-gameboard.3cf50eb5.jpg": "/wheres-waldo/static/media/pallet-town-on-parade-gameboard.3cf50eb5.jpg",
+    "static/media/pallet-town-on-parade-title.efdc353a.png": "/wheres-waldo/static/media/pallet-town-on-parade-title.efdc353a.png",
+    "static/media/pokeball.5a45c02d.svg": "/wheres-waldo/static/media/pokeball.5a45c02d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.68352134.js",
+    "static/js/2.679f3da1.chunk.js",
+    "static/css/main.fd00765d.chunk.css",
+    "static/js/main.6deb4476.chunk.js"
+  ]
+}
