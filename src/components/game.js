@@ -84,7 +84,6 @@ const Game = () => {
       pokeballBottom,
       remainingPokemon
     ).then((result) => {
-      console.log(result);
       if (typeof result === 'object') {
         const tempRemainingPokemon = [...remainingPokemon];
         const foundPokemonIndex = remainingPokemon.indexOf(result.name);
