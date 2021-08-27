@@ -26,10 +26,10 @@
 .hidden-pokemon {
   padding: 5px 15px;
   width: 7vw;
-  max-width: 75px;
+  max-width: 70px;
   min-width: 40px;
   height: 7vw;
-  max-height: 75px;
+  max-height: 70px;
   min-height: 40px;
 }
 
@@ -61,13 +61,15 @@ dd {
 .noBtn,
 .cancelBtn,
 .addBtn {
-  margin: 0 10px;
+  margin: 10px;
   display: inline-block;
 }
 
 .start,
 .yesBtn,
-.addBtn {
+.noBtn,
+.addBtn,
+.cancelBtn {
   border: 1px solid var(--white);
   border-radius: 5px;
 }
@@ -86,6 +88,7 @@ dd {
 .noBtn:hover,
 .cancelBtn:hover {
   color: #ff5656;
+  border: 1px solid #ff5656;
 }
 
 .name-input {
@@ -111,6 +114,12 @@ dd {
   max-width: 75px;
 }
 
+@media (max-width: 1920px) {
+  #gameboard {
+    max-width: 1200px;
+  }
+}
+
 @media (max-width: 780px) {
   p,
   dd {
@@ -132,14 +141,9 @@ dd {
   .yesBtn,
   .noBtn,
   .cancelBtn,
-  .addBtn {
-    color: var(--black);
-  }
-
-  .start,
-  .yesBtn,
   .addBtn,
   .name-input input {
+    color: var(--black);
     border: 1px solid var(--black);
   }
 
@@ -157,5 +161,6 @@ dd {
   .noBtn:hover,
   .cancelBtn:hover {
     color: #da3333;
+    border: 1px solid #da3333;
   }
 }
