@@ -54,17 +54,12 @@ export const anonSignIn = () => {
 };
 
 export const checkClick = (
-  x,
-  y,
-  pokeballHeight,
-  pokeballWidth,
+  pokeballLeft,
+  pokeballRight,
+  pokeballTop,
+  pokeballBottom,
   remainingPokemon
 ) => {
-  const pokeballLeft = x - pokeballWidth / 2;
-  const pokeballRight = x + pokeballWidth / 2;
-  const pokeballTop = y - pokeballHeight / 2;
-  const pokeballBottom = y + pokeballHeight / 2;
-
   const pokemonData = [];
 
   return firebase
@@ -79,10 +74,10 @@ export const checkClick = (
 
       return pokemonData.find(
         (pokemon) =>
-          pokemon.location[0] > pokeballLeft &&
-          pokemon.location[0] < pokeballRight &&
-          pokemon.location[1] > pokeballTop &&
-          pokemon.location[1] < pokeballBottom
+          pokemon.location[0] >= pokeballLeft &&
+          pokemon.location[0] <= pokeballRight &&
+          pokemon.location[1] >= pokeballTop &&
+          pokemon.location[1] <= pokeballBottom
       );
     })
     .catch((err) => console.log(err));
