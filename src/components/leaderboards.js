@@ -53,7 +53,7 @@ const Leaderboards = () => {
         <td className='pokemon'>
           {user.pokemon[0]},{' '}
           {user.pokemon[1] !== 'mr_mime' ? user.pokemon[1] : 'Mr. Mime'},{' '}
-          {user.pokemon[2] !== 'mr_mime' ? user.pokemon[2] : 'Mr. Mime'},
+          {user.pokemon[2] !== 'mr_mime' ? user.pokemon[2] : 'Mr. Mime'}
         </td>
         <td className='time'>{user.time.toFixed(2)}s</td>
       </tr>
