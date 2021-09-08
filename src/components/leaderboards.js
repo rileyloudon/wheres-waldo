@@ -3,8 +3,10 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { anonSignIn, currentUser } from '../firebase';
 import '../styles/Leaderboards.css';
+import { useHistory } from 'react-router';
 
 const Leaderboards = () => {
+  const history = useHistory();
   const [allLeaderboards, setAllLeaderboards] = useState([]);
   const [top10, setTop10] = useState([]);
   const [currentUserBestRank, setCurrentUserBestRank] = useState();
@@ -46,8 +48,7 @@ const Leaderboards = () => {
     return (
       <tr
         key={user.name + user.time}
-        className={i > 10 || user === currentUserBest ? 'user-best' : null}
-      >
+        className={i > 10 || user === currentUserBest ? 'user-best' : null}>
         <td className='rank'>{i + 1}. </td>
         <td className='name'>{user.name}</td>
         <td className='pokemon'>
@@ -63,6 +64,9 @@ const Leaderboards = () => {
   return (
     <div id='leaderboards'>
       <h2>Leaderboards</h2>
+      <button className='play-again' onClick={() => history.push('/')}>
+        Play Again
+      </button>
       {currentUserBestRank < 10 && currentUserBestRank !== -1 && (
         <p className='user-best'>Your Best Time</p>
       )}

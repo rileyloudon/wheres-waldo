@@ -37,6 +37,10 @@
   margin-bottom: 0;
 }
 
+h2 {
+  margin: 20px 0;
+}
+
 dd {
   padding: 5px;
   margin-left: 0;
@@ -46,7 +50,8 @@ dd {
 .yesBtn,
 .noBtn,
 .cancelBtn,
-.addBtn {
+.addBtn,
+.play-again {
   display: block;
   margin: auto;
   background-color: transparent;
@@ -55,6 +60,10 @@ dd {
   font-size: 14px;
   border: none;
   cursor: pointer;
+}
+
+.play-again {
+  margin-bottom: 20px;
 }
 
 .yesBtn,
@@ -69,12 +78,14 @@ dd {
 .yesBtn,
 .noBtn,
 .addBtn,
-.cancelBtn {
+.cancelBtn,
+.play-again {
   border: 1px solid var(--white);
   border-radius: 5px;
 }
 
-.start:hover {
+.start:hover,
+.play-again:hover {
   color: #ffc1a7;
   border: 1px solid #ffc1a7;
 }
@@ -142,12 +153,14 @@ dd {
   .noBtn,
   .cancelBtn,
   .addBtn,
+  .play-again,
   .name-input input {
     color: var(--black);
     border: 1px solid var(--black);
   }
 
-  .start:hover {
+  .start:hover,
+  .play-again:hover {
     color: #b84a1c;
     border: 1px solid #b84a1c;
   }
