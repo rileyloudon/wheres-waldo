@@ -52,7 +52,7 @@ const Leaderboards = () => {
         <td className='rank'>{i + 1}. </td>
         <td className='name'>{user.name}</td>
         <td className='pokemon'>
-          {user.pokemon[0]},{' '}
+          {user.pokemon[0] !== 'mr_mime' ? user.pokemon[0] : 'Mr. Mime'},{' '}
           {user.pokemon[1] !== 'mr_mime' ? user.pokemon[1] : 'Mr. Mime'},{' '}
           {user.pokemon[2] !== 'mr_mime' ? user.pokemon[2] : 'Mr. Mime'}
         </td>
