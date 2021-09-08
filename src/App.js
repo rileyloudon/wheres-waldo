@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Game from './components/Game';
 import Leaderboards from './components/Leaderboards';
@@ -6,7 +6,6 @@ import './styles/App.css';
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className='Pallet-Town-On-Parade'>
         <Header />
         <Switch>
@@ -14,7 +13,6 @@ function App() {
           <Route exact path='/leaderboards' component={Leaderboards} />
         </Switch>
       </div>
-    </BrowserRouter>
   );
 }
 
